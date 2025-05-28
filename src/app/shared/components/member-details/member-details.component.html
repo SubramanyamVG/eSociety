@@ -1,0 +1,40 @@
+<div class="member-container">
+  <div class="member-form">
+    <h2>{{ isEdit ? 'Edit' : 'Add' }} Member</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-row"><label>Member ID</label><input formControlName="memberId" /></div>
+      <div class="form-row"><label>Name</label><input formControlName="name" /></div>
+      <div class="form-row"><label>Apartment #</label><input formControlName="apartmentNumber" /></div>
+      <div class="form-row"><label>Email</label><input formControlName="email" type="email" /></div>
+      <div class="form-row"><label>Phone</label><input formControlName="phone" /></div>
+      <div class="form-row"><label>Family Members</label><input formControlName="familyMembersCount" type="number" /></div>
+
+      <div class="button-group">
+        <button type="submit">{{ isEdit ? 'Update' : 'Add' }}</button>
+        <button type="button" (click)="cancelEdit()" *ngIf="isEdit">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="member-list">
+    <h2>Members List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Apt#</th><th>Email</th><th>Phone</th><th>Members</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of members; let i = index">
+          <td>{{ m.memberId }}</td>
+          <td>{{ m.name }}</td>
+          <td>{{ m.apartmentNumber }}</td>
+          <td>{{ m.email }}</td>
+          <td>{{ m.phone }}</td>
+          <td>{{ m.familyMembersCount }}</td>
+          <td><button (click)="editMember(i)">Edit</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
